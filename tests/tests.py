@@ -12,6 +12,9 @@ class TestBoleto(unittest.TestCase):
     def test_create_boleto(self):
         self.assertTrue(isinstance(self.boleto, Boleto))
 
+    def test_token(self):
+        self.assertEqual(self.boleto._token, os.environ.get('TOKEN'))
+
 
 if __name__ == '__main__':
     unittest.main()
