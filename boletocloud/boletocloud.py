@@ -9,3 +9,9 @@ class Boleto(object):
     @property
     def _token(self):
         return self.__token
+
+    def criar(self):
+        pass
+
+    def buscar(self):
+        pass
