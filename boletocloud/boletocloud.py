@@ -1,5 +1,7 @@
 import requests
 
+from requests.auth import HTTPBasicAuth
+
 
 class Boleto(object):
 
@@ -12,6 +14,6 @@ class Boleto(object):
 
     def criar(self):
         pass
-
+        
     def buscar(self):
         pass
