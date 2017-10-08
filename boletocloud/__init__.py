@@ -1,1 +1,1 @@
-from .boletocloud import Boleto
+from .boletocloud import Ticket

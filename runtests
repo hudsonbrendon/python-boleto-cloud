@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pipenv run python tests/tests.py
+pipenv run coverage run --source='.' tests/tests.py

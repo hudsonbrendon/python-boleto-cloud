@@ -4,3 +4,8 @@ verify_ssl = true
 
 [packages]
 requests = "*"
+"python-decouple" = "*"
+
+
+["dev-packages"]
+coverage = "*"
