@@ -17,7 +17,7 @@ class TicketTestCase(unittest.TestCase):
         self.assertEqual(self.ticket._token, config('TOKEN'))
 
     def test_url(self):
-        self.assertEqual(self.ticket._get_url('test/'), 'https://sandbox.boletocloud.com/api/v1/boletos/test/')
+        self.assertEqual(self.ticket._get_url('/test/'), 'https://sandbox.boletocloud.com/api/v1/boletos/test/')
 
     def test_authorization(self):
         self.assertEqual(self.ticket._authorization.username, config('TOKEN'))
