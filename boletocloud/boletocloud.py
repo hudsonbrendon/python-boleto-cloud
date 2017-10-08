@@ -7,7 +7,7 @@ class Ticket(object):
 
     def __init__(self, token):
         self.__token = token
-        self.__url = 'https://sandbox.boletocloud.com/api/v1/boletos/{}'
+        self.__url = 'https://sandbox.boletocloud.com/api/v1/boletos{}'
 
     @property
     def _token(self):
@@ -18,7 +18,7 @@ class Ticket(object):
         auth = HTTPBasicAuth(self._token, 'token')
         return auth
 
-    def _get_url(self, params=None):
+    def _get_url(self, params=''):
         return self.__url.format(params)
 
     def create(self, conta_banco, conta_agencia, conta_numero, conta_carteira, beneficiario_nome, beneficiario_cprf,
@@ -31,11 +31,11 @@ class Ticket(object):
         '''Cria e retorna o boleto criado no formato PDF, para mais informações sobre esse recurso acesse:
            https://www.boletocloud.com/app/dev/api#boletos-criar
 
-           Parâmetros:
-           -
+           Você pode encontrar a descrição de todos os parâmetros na documentação da API, acesse:
+           https://boletocloud.com/app/dev/api#boletos-criar-campos
         '''
-        headers = {'content-type': 'application/pdf'}
-        payload = {
+        headers = {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
+        data = {
             'boleto.conta.banco': conta_banco,
             'boleto.conta.agencia': conta_agencia,
             'boleto.conta.numero': conta_numero,
@@ -64,9 +64,9 @@ class Ticket(object):
             'boleto.pagador.endereco.logradouro': pagador_endereco_logradouro,
             'boleto.pagador.endereco.numero': pagador_endereco_numero,
             'boleto.pagador.endereco.complemento': pagador_endereco_complemento,
-            'boleto.instrucao': instrucao,
+            'boleto.instrucao': instrucao
         }
-        ticket = requests.post(self._get_url(), auth=self._authorization, headers=headers, payload=payload)
+        ticket = requests.post(self._get_url(), auth=self._authorization, data=data, headers=headers)
         with open('ticket.pdf', 'wb') as file:
             file.write(ticket.content)
 
@@ -78,6 +78,6 @@ class Ticket(object):
            - token_ticket - Ticket do boleto a ser pesquisado.
         '''
         headers = {'content-type': 'application/pdf'}
-        ticket = requests.get(self._get_url(token_ticket), auth=self._authorization, headers=headers)
+        ticket = requests.get(self._get_url('/{}'.format(token_ticket)), auth=self._authorization, headers=headers)
         with open('ticket.pdf', 'wb') as file:
             file.write(ticket.content)
