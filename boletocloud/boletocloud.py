@@ -80,7 +80,7 @@ class Ticket(object):
            https://www.boletocloud.com/app/dev/api#boletos-buscar
 
            Parâmetros:
-           - token_ticket - Ticket do boleto a ser pesquisado.
+           - token_ticket - Ticket do boleto a ser pesquisado
         '''
         headers = {'content-type': 'application/pdf'}
 
