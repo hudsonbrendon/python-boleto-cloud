@@ -10,7 +10,7 @@ class Ticket(object):
 
     def __init__(self, token):
         self.__token = token
-        self.__url = 'https://sandbox.boletocloud.com/api/v1/boletos{}'
+        self.__url = 'https://app.boletocloud.com/api/v1/boletos{}'
 
     @property
     def _token(self):
@@ -80,7 +80,7 @@ class Ticket(object):
            https://www.boletocloud.com/app/dev/api#boletos-buscar
 
            Parâmetros:
-           - token_ticket - Ticket do boleto a ser pesquisado.
+           - token_ticket - Ticket do boleto a ser pesquisado
         '''
         headers = {'content-type': 'application/pdf'}
 
