@@ -2,8 +2,11 @@ import requests
 
 from requests.auth import HTTPBasicAuth
 
+from .utils import write_pdf
+
 
 class Ticket(object):
+    '''Cria a instância de um boleto'''
 
     def __init__(self, token):
         self.__token = token
@@ -27,7 +30,7 @@ class Ticket(object):
                beneficiario_endereco_complemento, emissao, vencimento, documento, numero, titulo, valor,
                pagador_nome, pagador_cprf, pagador_endereco_cep, pagador_endereco_uf, pagador_endereco_localidade,
                pagador_endereco_bairro, pagador_endereco_logradouro, pagador_endereco_numero, pagador_endereco_complemento,
-               instrucao):
+               instrucao=None):
         '''Cria e retorna o boleto criado no formato PDF, para mais informações sobre esse recurso acesse:
            https://www.boletocloud.com/app/dev/api#boletos-criar
 
@@ -67,8 +70,10 @@ class Ticket(object):
             'boleto.instrucao': instrucao
         }
         ticket = requests.post(self._get_url(), auth=self._authorization, data=data, headers=headers)
-        with open('ticket.pdf', 'wb') as file:
-            file.write(ticket.content)
+        if ticket.status_code is 201:
+            write_pdf(ticket)
+        else:
+            return ticket.json()
 
     def search(self, token_ticket):
         '''Retorna um boleto no formato PDF, para mais informações sobre esse recurso acesse:
@@ -78,6 +83,9 @@ class Ticket(object):
            - token_ticket - Ticket do boleto a ser pesquisado.
         '''
         headers = {'content-type': 'application/pdf'}
+
         ticket = requests.get(self._get_url('/{}'.format(token_ticket)), auth=self._authorization, headers=headers)
-        with open('ticket.pdf', 'wb') as file:
-            file.write(ticket.content)
+        if ticket.status_code is 200:
+            write_pdf(ticket)
+        else:
+            return ticket.json()
