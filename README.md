@@ -13,7 +13,7 @@ Integração com a API do boletocloud.com
 Você pode instalar a biblioteca através do pip:
 
 ```bash
-$ pip install boletocloud
+$ pip install python-boleto-cloud
 ```
 ou
 
