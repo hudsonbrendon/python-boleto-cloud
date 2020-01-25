@@ -55,7 +55,7 @@ Se você precisar pesquisar por um boleto criado, utilize o método **search**, 
 Se tudo ocorrer bem, um arquivo em PDF chamado boleto.pdf será gerado no diretório onde o comando foi executado, caso contrário, será retornado um json com o erro(s) referentes a solicitação.
 
 # Dependencias
-- Python 3.5
+- Python 3.7
 
 # Licença
 [MIT](http://en.wikipedia.org/wiki/MIT_License)
