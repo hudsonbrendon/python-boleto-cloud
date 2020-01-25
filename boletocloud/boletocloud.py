@@ -10,7 +10,7 @@ class Ticket(object):
 
     def __init__(self, token):
         self.__token = token
-        self.__url = 'https://app.boletocloud.com/api/v1/boletos{}'
+        self.__url = 'https://sandox.boletocloud.com/api/v1/boletos{}'
 
     @property
     def _token(self):
