@@ -1,12 +1,14 @@
 language: python
 python:
   - "3.7"
-# command to install dependencies
+
+script:
+  - black --target-version=py37 boletocloud --check
+
 install:
  - pip install pipenv
  - pipenv install --python 3.7
  - pipenv install --dev
  - "pipenv run pip install https://github.com/hudsonbrendon/python-boleto-cloud/archive/master.zip"
 
-# command to run tests
-script: ./runtests
+script: make test
