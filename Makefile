@@ -2,7 +2,7 @@ install:
 	pipenv run python setup.py install
 
 test:
-	pipenv run python tests/tests.py
+	pipenv run coverage run --source='.' tests/tests.py
 
 dev:
 	make install
