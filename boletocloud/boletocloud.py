@@ -97,7 +97,7 @@ class Ticket(object):
         ticket = requests.post(
             self._get_url(), auth=self._authorization, data=data, headers=headers
         )
-        if ticket.status_code is 201:
+        if ticket.status_code == 201:
             write_pdf(ticket)
         else:
             return ticket.json()
@@ -114,7 +114,7 @@ class Ticket(object):
         ticket = requests.get(
             self._get_url(f"{token_ticket}"), auth=self._authorization, headers=headers
         )
-        if ticket.status_code is 200:
+        if ticket.status_code == 200:
             write_pdf(ticket)
         else:
             return ticket.json()
